@@ -1,0 +1,358 @@
+// // TS recommend : Interfaces over Types when possible
+//
+// // Describe data structures in a more natural way
+// // Describing objects for example: Shipment, orders
+// interface Person {
+//   name: string
+//   age: number
+// }
+//
+// // type aliases:
+// // type Data = string;
+//
+// // function description types
+// //
+// // interface PersonLoggerFn {
+// //   ( name: string, age: number ): string
+// // }
+// type PersonLoggerFn = ( name: string, age: number ) => string
+// type SecondPersonLoggerFn = ( { name, age }: Person ) => string
+//
+// const play = () => {
+//   const person = {
+//     name: 'Hugo',
+//     age: 34
+//   };
+//
+//   const logPersonInfo: PersonLoggerFn = ( name, age ) => {
+//     const info = `Name: ${ name }, age: ${ age }`;
+//     console.log( `first: ${ info }` );
+//     return info;
+//   };
+//
+//   const logPersonInfo2: SecondPersonLoggerFn = ( { name, age } ) => {
+//     const info = `Name: ${ name }, age: ${ age }`;
+//     console.log( `second: ${ info }` );
+//     return info;
+//   };
+//   // logPersonInfo( person.name, person.age );
+//   logPersonInfo2( person );
+// };
+// export default play;
+
+// **************************** CLASSES ****************************
+// class Person {
+//   name: string;
+//   age?: number;
+//
+//   constructor( name, age = 12 ) {
+//     this.name = name;
+//     this.age = age;
+//   }
+// }
+//
+// type logFn = ( { name, age }: Person ) => string
+//
+// const play = () => {
+//   const logPersonInfo: logFn = ( { name, age } ) => {
+//     const info = `Name: ${ name }, age: ${ age }`;
+//     console.log( info );
+//     return info;
+//   };
+//   const person = new Person( 'hugo', 45 );
+//   logPersonInfo( person );
+//
+// };
+//
+// export default play;
+
+
+// **************************** extending interfaces ****************************
+
+// interface Person {
+//   name: string
+//   age: number
+// }
+//
+// interface BusinessPerson extends Person {
+//   income: number
+// }
+//
+// interface AcademicPerson extends Person {
+//   publications: string[]
+// }
+//
+// const play = () => {
+//   // const names: string[] = [ 'jules', 'jones' ];
+//   // const numbers: Array<number> = [ 1, 2, 3 ];
+//   const person: AcademicPerson = {
+//     name: 'filip',
+//     age: 23,
+//     publications: [ '1', 'Harry Potter' ]
+//   };
+//
+//   const person2: BusinessPerson = {
+//     name: 'Joe',
+//     age: 55,
+//     income: 5455
+//   };
+//
+//   const logPerson = ( person: Person ) => {
+//     console.log( person );
+//   };
+//   logPerson( person );
+//   logPerson( person2 );
+// };
+// export default play;
+
+// **************************** extending & narrowing types ****************************
+//
+// type BasicCar = {
+//   name: string,
+//   brand: string
+// } & { speed: number }
+//
+// type CityCar = {
+//   space: string
+//   maxSpeed: 100
+// } & BasicCar
+// // Possible to chain an interface to a type (i.e : & Car & AcademicPerson)
+//
+// type RaceCar = {
+//   name: string
+//   maxSpeed: 200
+//   team: string
+// }
+//
+// type Car = RaceCar | CityCar
+//
+// const play = () => {
+//   const car: RaceCar = {
+//     name: 'deLorean',
+//     maxSpeed: 200,
+//     team: 'Ferrari'
+//   };
+//
+//   const logCarInfo = ( car: Car ) => {
+//     console.log( ( car as RaceCar ).team );
+//     console.log( ( <RaceCar> car ).team );
+//     // switch ( car.maxSpeed ) {
+//     //   case 100:
+//     //     console.log( car );
+//     //     break;
+//     //   case 200:
+//     //     console.log( car.team );
+//     //     break;
+//     //   default:
+//     //     console.log( car );
+//     // }
+//   };
+//   logCarInfo( car );
+//
+//
+// };
+// export default play;
+
+// **************************** extending & narrowing interfaces ****************************
+//
+// interface Person {
+//   kind: 'business' | 'academic' | 'otherType'
+//   name: string
+//   age: number
+// }
+//
+// interface BusinessPerson extends Person {
+//   kind: 'business'
+//   salary: number
+// }
+//
+// interface AcademicPerson extends Person {
+//   kind: 'academic'
+//   publications: Array<string>
+// }
+//
+// type Human = BusinessPerson | AcademicPerson
+//
+// const play = () => {
+//
+//   const human1: Human = {
+//     kind: 'business',
+//     name: 'Hujo',
+//     age: 23,
+//     salary: 500
+//   };
+//
+//   const human2: Human = {
+//     kind: 'academic',
+//     name: 'hojo',
+//     age: 22,
+//     publications: [ '1', '2' ]
+//   };
+//   const logPersonInfo = ( human: Human ) => {
+//     switch ( human.kind ) {
+//       case 'academic':
+//         console.log( human.kind, human.publications );
+//         break;
+//       case 'business':
+//         console.log( human.kind, human.salary );
+//         break;
+//       default:
+//         const _never: never = car;
+//         return _never;
+//         easier to debug: if new car type, will directly throw an error
+//     }
+//   };
+//   Math.random() > 0.5 ? logPersonInfo( human1 ) : logPersonInfo( human2 );
+// };
+//
+// export default play;
+
+// **************************** declaration merging ****************************
+// interface Person {
+//   name: string
+//   age: number
+//   kind: 'academic' | 'business'
+// }
+//
+// interface BusinessPerson extends Person {
+//   kind: 'business'
+//   salary: number
+// }
+//
+// interface AcademicPerson extends Person {
+//   kind: 'academic'
+//   numberOfPublications: number
+// }
+//
+// interface Person {
+//   prop1: string
+//   prop2: number
+// }
+//
+//
+// const play = () => {
+//   const hooman: Person = {
+//     name: 'hojo',
+//     age: 23,
+//     kind: 'academic',
+//     prop1: 'hel',
+//     prop2: 2
+//   };
+//   const printInfo = ( someObject: { [ key: string ]: any } ) => {
+//
+//   };
+// };
+// export default play;
+
+// **************************** generic types ****************************
+//
+// interface Person {
+//   name: string
+//   age: number
+//   city: string
+// }
+//
+// class Logger<T extends Person = Person> /* =Person means default type if none specified; here Student specified but if none, will be Person */ {
+//
+//   log( items: Array<T>, callback: ( i: T ) => void ): void {
+//     items.forEach( item => {
+//       callback( item );
+//     } );
+//
+//   }
+//
+// }
+//
+// class Student implements Person {
+//   name;
+//   age;
+//   city;
+//
+//   constructor( name, age, city ) {
+//     this.name = name;
+//     this.age = age;
+//     this.city = city;
+//   }
+// }
+//
+// const play = () => {
+//   // const names = [ 'filip', 'john', 'hugo' ];
+//   // const logger = new Logger<string>( names );
+//   // logger.log( ( name ) => {
+//   //   console.log( name );
+//   // } );
+//
+//   // const logger2 = new Logger<number>( [ 1, 2, 3, 4 ] );
+//   // logger2.log( ( num ) => {
+//   //   console.log( num );
+//   // } );
+//   const persons = [ { name: 'hujo', age: 22, city: 'Marseille' }, { name: 'Ayla', age: 25, city: 'Paris' } ];
+//   const logger = new Logger<Student>();
+//   logger.log( persons, person => {
+//     console.log( person );
+//   } );
+//
+// };
+//
+// export default play;
+
+// **************************** inferring ****************************
+// interface Person {
+//   name: string
+//   age: number
+// }§
+
+// type PersonKey = keyof Person
+
+// type SingleType<T> = T extends any[] ? T[number] : T
+// type customArray = {
+//   [ index: number ]: string
+// }
+//
+// type Logger<FP = string
+//   , SP = number
+//   , R = string> = ( param1: FP, param2: SP ) => R
+
+// const play = async () => {
+//   type Greeting = { msg: string }
+//   type InferHelloProps<T> = T extends () => Promise<{ props: infer Props }> ? Props : never
+//
+//   const getHelloProps = async () => {
+//     const greeting: Greeting = { msg: 'Hello world' };
+//
+//     return {
+//       props: {
+//         greeting,
+//         data: {
+//           cars: [ 'car1', 'car2' ]
+//         }
+//       }
+//     };
+//   };
+//
+//   const sayHello = ( props: InferHelloProps<typeof getHelloProps> ) => {
+//     console.log( props );
+//   };
+//   const data = await getHelloProps();
+//
+//   sayHello( data.props );
+
+// type type1 = SingleType<Array<string>>;
+// type type2 = SingleType<Array<number>>;
+// type type3 = SingleType<Person>;
+//
+// const items: customArray = [ '1', '2', '3' ];
+
+// const personKey: PersonKey = Math.random() > 0.5 ? 'age' : 'name';
+
+// const superLogger: Logger<string, number, string> = ( name, age ) => {
+//   return name;
+// };
+//
+// const logger: Logger = ( brand, age ) => {
+//   return brand + age;
+// };
+// }
+
+
+// export default play;
