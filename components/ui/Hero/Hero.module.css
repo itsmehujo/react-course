@@ -1,0 +1,19 @@
+.root {
+  @apply flex flex-col py-32 md:flex-row px-8 justify-center;
+}
+
+.headline {
+  @apply flex-1 max-w-xl text-4xl leading-10 font-extrabold sm:text-5xl sm:leading-none sm:tracking-tight lg:text-6xl lg:tracking-wide self-center;
+}
+
+.description {
+  @apply mt-5 text-xl leading-7 
+}
+
+.button {
+  @apply text-2xl border-2 border-sky-200 bg-sky-200 text-black px-3 py-1 inline-block mt-4 font-bold transition-colors duration-200 rounded-sm ;
+  &:hover {
+    @apply bg-red-200 border-red-200;
+  }
+
+}

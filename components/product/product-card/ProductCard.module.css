@@ -1,0 +1,46 @@
+.root {
+  @apply relative ;
+  &:hover {
+    .productBg:before {
+      transform: scale(0.99);
+    }
+    .productImage {
+      transform: scale(1.15);
+    }
+  }
+  &:nth-child( 6n+1 ) .productBg {
+    @apply bg-pink-400
+  }
+  &:nth-child( 6n+3 ) .productBg {
+    @apply bg-violet-400;
+  }
+  &:nth-child( 6n+5 ) .productBg {
+    @apply bg-blue-400;
+  }
+}
+
+.productBg {
+  @apply absolute inset-0 z-0 bg-slate-600;
+  &:before {
+    content: ''
+    @apply transition-transform duation-1000 block w-full h-full bg-repeat-space
+  }
+  background-image: url('/assets/product-pattern-bg.svg');
+  
+}
+
+.productImage {
+  @apply transition-transform block;
+}
+
+.productTag {
+  @apply absolute top-10 left-10 text-3xl tracking-wide bg-stone-300 p-4
+}
+
+.productName {
+  @apply font-bold 
+}
+
+.productPrice {
+  @apply font-semibold text-xl
+}

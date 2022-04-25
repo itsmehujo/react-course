@@ -1,0 +1,27 @@
+.root {
+  @apply flex flex-row md:py-6 justify-between
+}
+
+.logo {
+  @apply font-bold uppercase
+}
+
+.navul {
+  @apply flex flex-row gap-2
+}
+
+.link {
+  @apply font-bold uppercase relative px-1 hover:after:w-full after:transition-all duration-200;
+  &:after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: '';
+    width: 0;
+    height: 3px;
+    background-color: black;
+    z-index: 4;
+  }
+}
