@@ -11,9 +11,8 @@
 }
 
 .button {
-  @apply text-2xl border-2 border-sky-200 bg-sky-200 text-black px-3 py-1 inline-block mt-4 font-bold transition-colors duration-200 rounded-sm ;
-  &:hover {
-    @apply bg-red-200 border-red-200;
-  }
-
+  @apply text-2xl border-2 border-sky-200 bg-sky-200 text-black px-3 py-1 inline-block mt-4 font-bold transition-colors duration-200 rounded-sm;
+}
+.button:hover {
+  @apply bg-red-200 border-red-200;
 }

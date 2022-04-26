@@ -1,5 +1,5 @@
 .root {
-  @apply flex flex-row md:py-6 justify-between
+  @apply grid grid-cols-3 md:py-6 justify-between
 }
 
 .logo {
@@ -7,7 +7,7 @@
 }
 
 .navul {
-  @apply flex flex-row gap-2
+  @apply flex flex-row gap-2 justify-center
 }
 
 .link {

@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Container } from '@components/ui';
+import { Usernav } from '@components/common';
 import Link from 'next/link';
 import s from './Navbar.module.css';
 
@@ -59,6 +60,7 @@ const Navbar: FC = () => {
           </li>
         </ul>
       </nav>
+      <Usernav />
     </div>
   </Container>)
 }

@@ -1,1 +1,7 @@
-.root {}
+.list {
+  @apply flex flex-row gap-2 justify-end
+}
+
+.item {
+  @apply mr-6 cursor-pointer transition duration-500 flex items-center;
+}

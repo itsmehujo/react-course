@@ -1,0 +1,67 @@
+.root {
+  @apply relative w-full h-full;
+  overflow-y: hidden;
+}
+
+.leftControl,
+.rightControl {
+  @apply absolute top-1/2 -translate-x-1/2 z-20 w-16 h-16 flex items-center justify-center bg-slate-300 rounded-full;
+}
+
+.leftControl:hover,
+.rightControl:hover {
+  @apply bg-slate-700;
+}
+
+.leftControl:hover,
+.rightControl:hover {
+  @apply outline-none;
+}
+
+.leftControl {
+  @apply bg-cover left-10;
+  background-image: url('/assets/cursor-left.png');
+}
+
+.rightControl {
+  @apply bg-cover right-10;
+  background-image: url('/assets/cursor-right.png');
+
+}
+
+.control {
+  @apply opacity-0 transition duration-150;
+}
+
+.root:hover .control {
+  @apply opacity-100;
+}
+
+.positionIndicatorsContainer {
+  @apply hidden;
+
+}
+
+.positionIndicator {
+  @apply rounded-full p-2;
+}
+
+.dot {
+  @apply bg-slate-300 transition w-3 h-3 rounded-full;
+}
+
+.positionIndicator:hover .dot {
+  @apply bg-slate-800;
+}
+
+.positionIndicator:focus {
+  @apply outline-none;
+}
+
+.positionIndicatorActive .dot {
+  @apply bg-white;
+}
+
+.positionIndicatorActive:hover .dot {
+  @apply bg-white;
+}

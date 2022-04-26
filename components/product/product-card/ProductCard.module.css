@@ -9,13 +9,14 @@
     }
   }
   &:nth-child( 6n+1 ) .productBg {
-    @apply bg-pink-400
+    @apply bg-indigo-400;
   }
+
   &:nth-child( 6n+3 ) .productBg {
-    @apply bg-violet-400;
+    @apply bg-purple-400;
   }
   &:nth-child( 6n+5 ) .productBg {
-    @apply bg-blue-400;
+    @apply bg-teal-500;
   }
 }
 
@@ -34,13 +35,16 @@
 }
 
 .productTag {
-  @apply absolute top-10 left-10 text-3xl tracking-wide bg-stone-300 p-4
+  @apply absolute top-0 left-0 text-3xl tracking-wide flex flex-col;
+  & > * {
+    @apply bg-white p-3;
+  }
 }
 
 .productName {
-  @apply font-bold 
+  @apply font-bold w-max
 }
 
 .productPrice {
-  @apply font-semibold text-xl
+  @apply font-semibold text-xl w-max
 }

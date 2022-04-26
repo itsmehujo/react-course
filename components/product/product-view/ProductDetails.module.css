@@ -1,0 +1,35 @@
+.left {
+  @apply relative h-fit transition-colors duration-200;
+}
+.productTag {
+  @apply absolute top-0 left-0 text-xl tracking-wide flex flex-row justify-between w-full mt-3;
+  & > * {
+    @apply bg-black text-white rounded-md border-black border-4 py-1 px-3 mx-2;
+  }
+  & > span:first-child {
+    @apply font-bold w-max;
+  }
+  & > span:last-child {
+    @apply font-semibold w-max;
+  }
+}
+
+.imageContainer {
+  & > div {
+    @apply h-full;
+    & > div {
+      @apply h-full;
+    }
+  }
+}
+
+.img {
+  @apply w-full h-auto max-h-full object-cover;
+}
+.optionDisplay {
+  @apply flex flex-row mb-3 gap-3 items-center;
+}
+
+.right {
+  @apply flex flex-col gap-6
+}
