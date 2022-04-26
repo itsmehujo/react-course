@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { ProductSlider } from '@components/product'
 import Swatch from '../swatch';
 import { getVariant } from '../helpers';
+import { useUI } from '@components/ui/context';
+import useAddItem from '@framework/cart/use-add-item';
 
 interface Props {
   product: Product
@@ -17,11 +19,30 @@ type Choices = {
   val?: ProductOptionValues
 }
 
+
+
 const ProductView: FC<Props> = ({ product }) => {
-  const [choices, setChoices] = useState<Choices>({
-  });
+  const [choices, setChoices] = useState<Choices>({});
+  const { openSidebar } = useUI();
+  const addItemToCart = useAddItem();
+
   const variant = getVariant(product, choices);
-  console.log(variant)
+
+  const addToCart = () => {
+    try {
+      const item = {
+        productId: String(product.id),
+        variantId: variant?.id,
+        variantOptions: variant?.options
+      }
+      console.log(
+        addItemToCart(item)
+      );
+      openSidebar();
+
+    }
+    catch { }
+  }
 
   return (<>
     <Container additionalClasses='py-6 grid grid-cols-2 gap-10'>
@@ -75,7 +96,7 @@ const ProductView: FC<Props> = ({ product }) => {
         <p>{product.description}</p>
         <Button
           className='test'
-          onClick={() => alert('adding to cart')}
+          onClick={() => { addToCart() }}
         >
           Add to cart
         </Button>

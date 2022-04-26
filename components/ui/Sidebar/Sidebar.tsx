@@ -21,7 +21,7 @@ const Sidebar: FC<Props> = ({ children, isOpen, onClose }) => {
   }, [isOpen])
   return (
     <section ref={ref}
-      className={`absolute inset-y-0 right-0 pl-10 max-w-full flex sm:pl-16 outline-none ${!isOpen ? 'pointer-events-none' : 'pointer-events-auto'}`} data-open={isOpen ? true : false}>
+      className={`fixed inset-y-0 right-0 pl-10 max-w-full flex sm:pl-16 outline-none ${!isOpen ? 'pointer-events-none' : 'pointer-events-auto'}`} data-open={isOpen ? true : false}>
       <div className={`h-full md:w-screen md:max-w-md transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="h-full flex flex-col text-black bg-white shadow-xl overflow-y-auto">
           {children}
